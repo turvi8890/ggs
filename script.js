@@ -1,4 +1,3 @@
-
 // Video and model data (could be moved to an API endpoint for better scalability)
 const videoData = [
     {id:589212,img:"IMGss/1.jpg"},
@@ -81,10 +80,12 @@ const modelData = [
     {name:"Xwife Karen",slug:"xwife-karen",img:"https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6816/verticaltngf/760x1060c.webp"}
 ];
 
-
 document.addEventListener('DOMContentLoaded', function() {
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Load JuicyAds
+    loadJuicyAds();
 
     // Generate video cards
     const videoGrid = document.querySelector('.video-grid');
@@ -101,8 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </a>
         `;
     });
-
-   
 
     // Generate model cards
     const modelGrid = document.querySelector('.model-grid');
@@ -171,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
     // Optimize video background loading
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
@@ -179,3 +177,102 @@ document.addEventListener('DOMContentLoaded', function() {
         heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
     }
 });
+
+function loadJuicyAds() {
+    // Create and load the main JuicyAds script
+    const juicyScript = document.createElement('script');
+    juicyScript.type = 'text/javascript';
+    juicyScript.dataset.cfasync = 'false';
+    juicyScript.async = true;
+    juicyScript.src = 'https://poweredby.jads.co/js/jads.js';
+    document.head.appendChild(juicyScript);
+
+    // Create ad containers
+    createAdContainer({
+        containerId: 'juicy-ad-vertical',
+        adzoneId: 1095551,
+        width: 258,
+        height: 528,
+        position: 'sidebar' // Place in sidebar if exists, otherwise at page start
+    });
+
+    createAdContainer({
+        containerId: 'juicy-ad-rectangle',
+        adzoneId: 1095548,
+        width: 308,
+        height: 286,
+        position: 'middle', // Place after 6th video card
+        insertAfter: 6
+    });
+
+    createAdContainer({
+        containerId: 'juicy-ad-leaderboard',
+        adzoneId: 1095549,
+        width: 300,
+        height: 100,
+        position: 'header' // Place after header
+    });
+}
+
+function createAdContainer(options) {
+    const {
+        containerId,
+        adzoneId,
+        width,
+        height,
+        position = 'body',
+        insertAfter = 0
+    } = options;
+
+    // Create container div
+    const container = document.createElement('div');
+    container.id = containerId;
+    container.className = 'juicy-ad-container';
+    container.style.margin = '20px auto';
+    container.style.textAlign = 'center';
+    
+    // Create ad ins element
+    const ins = document.createElement('ins');
+    ins.id = adzoneId;
+    ins.dataset.width = width;
+    ins.dataset.height = height;
+    container.appendChild(ins);
+    
+    // Push the ad to JuicyAds queue
+    const pushScript = document.createElement('script');
+    pushScript.type = 'text/javascript';
+    pushScript.dataset.cfasync = 'false';
+    pushScript.async = true;
+    pushScript.text = `(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':${adzoneId}});`;
+    container.appendChild(pushScript);
+
+    // Position the ad container based on options
+    let targetElement;
+    switch(position) {
+        case 'sidebar':
+            targetElement = document.querySelector('.sidebar') || document.body;
+            targetElement.insertAdjacentElement('afterbegin', container);
+            break;
+            
+        case 'middle':
+            const videoGrid = document.querySelector('.video-grid');
+            if (videoGrid && videoGrid.children.length > insertAfter) {
+                videoGrid.children[insertAfter].insertAdjacentElement('afterend', container);
+            } else {
+                document.body.appendChild(container);
+            }
+            break;
+            
+        case 'header':
+            const header = document.querySelector('header');
+            if (header) {
+                header.insertAdjacentElement('afterend', container);
+            } else {
+                document.body.insertAdjacentElement('afterbegin', container);
+            }
+            break;
+            
+        default:
+            document.body.appendChild(container);
+    }
+}
