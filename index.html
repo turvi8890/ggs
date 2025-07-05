@@ -1,1295 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Media Portfolio</title>
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #ff4081;
-            --primary-dark: #e91e63;
-            --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #e0e0e0;
-            --gray: #aaa;
-            --border: #333;
-            --card-bg: #1e1e1e;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: var(--darker);
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #FF1493;
-        }
-
-        .logo span {
-            color:#FFFAF0 ;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav ul li a {
-            font-weight: 400;
-            font-size: 23px;
-            transition: color 0.3s;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .auth-btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .login-btn {
-            border: 1px solid var(--border);
-        }
-
-        .login-btn:hover {
-            background-color: #222;
-        }
-
-        .join-btn {
-            background-color: var(--primary);
-            color: #fff;
-        }
-
-        .join-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Hero Section */
-/* Hero Section */
-.hero {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    object-fit: cover;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    padding: 0 2rem;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,64,129,0.2) 0%, rgba(18,18,18,0.8) 100%);
-    z-index: 0;
-}
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            color: #F5FFFA;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #F5FFFA;
-            font-weight: 500;
-        }
-
-        .cta-button {
-            background-color: #FF00FF;
-            color: #fff;
-            padding: 1rem 2.5rem;
-            border-radius: 6px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
-        }
-
-        /* Content Sections */
-        .section {
-            padding: 6rem 3rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .scroll-down-chevrons {
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: translateY(0); opacity: 0.4; }
-    50% { transform: translateY(10px); opacity: 1; }
-    100% { transform: translateY(0); opacity: 0.4; }
-}
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-weight: 300;
-            font-size: 1.1rem;
-        }
-
-        /* Video Grid - 3 columns */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        /* Model Grid - 4 columns */
-        .model-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        /* Large Video Thumbnail Cards */
-        .video-thumbnail-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid var(--border);
-            position: relative;
-            aspect-ratio: 16/9;
-        }
-
-        .video-thumbnail-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 64, 129, 0.3);
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .video-thumbnail-card:hover .video-thumbnail {
-            transform: scale(1.05);
-        }
-
-        .video-thumbnail-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background-color: rgba(255, 64, 129, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .video-thumbnail-card:hover .video-thumbnail-play {
-            opacity: 1;
-        }
-
-        .video-thumbnail-play svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-            margin-left: 6px;
-        }
-
-        /* Model Cards - Larger size */
-        .model-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid var(--border);
-            position: relative;
-            width: 100%;
-            height: 600px; /* Increased height */
-            margin: 0 auto;
-        }
-
-        .model-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 64, 129, 0.3);
-        }
-
-        .model-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .model-card:hover .model-thumbnail {
-            transform: scale(1.05);
-        }
-
-        .view-all {
-            text-align: center;
-        }
-
-        .view-all a {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .view-all a:hover {
-            color: var(--primary-dark);
-        }
-
-        .view-all svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s;
-        }
-
-        .view-all a:hover svg {
-            transform: translateX(3px);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--darker);
-            padding: 4rem 3rem 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-col h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            transition: color 0.3s;
-            font-weight: 300;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .social-link svg {
-            width: 18px;
-            height: 18px;
-            fill: #fff;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .model-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 1024px) {
-            header {
-                padding: 1.5rem 2rem;
-            }
-
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .section {
-                padding: 4rem 2rem;
-            }
-
-            .video-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .model-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-            .video-grid,
-            .model-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-    </style>
+    <meta name="description" content="Discover premium adult content and creators from around the world">
+    <title>NaughtyPorn</title>
+    
+    <!-- Favicons (Simplified) -->
+    <link rel="shortcut icon" href="new.ico/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="new.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="new.ico/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="new.ico/apple-icon-180x180.png">
+    <link rel="manifest" href="new.ico/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#121212">
+    <meta name="msapplication-TileColor" content="#121212">
+    
+    <!-- Preloads -->
+    <link rel="preconnect" href="https://images5.naughtycdn.com">
+    <link rel="preconnect" href="https://okxxx1.com">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="IMGss/vid.mp4" as="video" type="video/mp4">
 </head>
+
 <body>
-<header>
-    <div class="logo">Naughty<span>Porn</span></div>
-    <nav>
-        <ul>
-            <li><a href="#videos">Videos</a></li>
-            <li><a href="#models">Models</a></li>
-<!--            <li><a href="#lifestyle">Lifestyle</a></li>-->
-<!--            <li><a href="#social">Social</a></li>-->
-        </ul>
-    </nav>
-    <div class="auth-buttons">
-        <a href="#login" class="auth-btn login-btn">Login</a>
-        <a href="#join" class="auth-btn join-btn">Join Now</a>
-    </div>
-</header>
-
-<section class="hero">
-    <!-- Video Background -->
-    <video autoplay muted loop playsinline class="hero-video">
-        <source src="IMGss\vid.mp4" type="video/mp4">
-        <!-- Fallback image if video doesn't load -->
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fallback background">
-    </video>
-
-    <div class="hero-content">
-        <h1 class="hero-title">Discover premium content</h1>
-        <h2 class="hero-subtitle">creators all around the world</h2>
-        <a href="#videos" class="cta-button scroll-button">
-            Scroll Down
-            <svg class="scroll-down-chevrons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 7l5 5 5-5M7 13l5 5 5-5"/>
-            </svg>
-        </a>
-    </div>
-</section>
-
-<section id="videos" class="section">
-    <h2 class="section-title">Featured Videos</h2>
-    <p class="section-subtitle">Explore our collection of high-quality video content across various categories</p>
-    <div class="video-grid">
-        <!-- Row 1 -->
-        <a href="https://okxxx1.com/video/589212/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss\1.jpg" alt="Video 1" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/602495/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss\2.jpg" alt="Video 2" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/602102/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss\3.jpg" alt="Video 3" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 2 -->
-        <a href="https://okxxx1.com/video/600952/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss\4.jpg" alt="Video 4" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/598941/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss\5.jpg" alt="Video 5" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/598262/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss\6.jpg" alt="Video 6" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 3 -->
-        <a href="https://okxxx1.com/video/598261/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss\7.jpg" alt="Video 7" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/598043/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss\8.jpg" alt="Video 8" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/496339/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss\9.jpg" alt="Video 9" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 4 -->
-        <a href="https://okxxx1.com/video/601959/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss\10.jpg" alt="Video 10" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/602874/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/11.jpg" alt="Video 11" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/35957/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/12.jpg" alt="Video 12" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 5 -->
-        <a href="https://okxxx1.com/video/42926/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/13.jpg" alt="Video 13" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/26821/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/14.jpg" alt="Video 14" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/244686/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/15.jpg" alt="Video 15" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 6 -->
-        <a href="https://okxxx1.com/video/129462/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/16.jpg" alt="Video 16" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/83279/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/17.jpg" alt="Video 17" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/13513/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/18.jpg" alt="Video 18" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 7 -->
-        <a href="https://okxxx1.com/video/64310/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/19.jpg" alt="Video 19" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/46236/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/20.jpg" alt="Video 20" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/497129/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/21.jpg" alt="Video 21" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 8 -->
-        <a href="https://okxxx1.com/video/486989/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/22.jpg" alt="Video 22" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/496728/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/23.jpg" alt="Video 23" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/499086/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/24.jpg" alt="Video 24" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 9 -->
-        <a href="https://okxxx1.com/video/499483/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/25.jpg" alt="Video 25" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/499195/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/26.jpg" alt="Video 26" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/499382/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/27.jpg" alt="Video 27" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 10 -->
-        <a href="https://okxxx1.com/video/493776/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/28.jpg" alt="Video 28" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/598090/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/29.jpg" alt="Video 29" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/597871/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/30.jpg" alt="Video 30" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 11 -->
-        <a href="https://okxxx1.com/video/593867/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/31.jpg" alt="Video 31" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/598208/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/32.jpg" alt="Video 32" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/599980/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/33.jpg" alt="Video 33" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 12 -->
-        <a href="https://okxxx1.com/video/597976/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/34.jpg" alt="Video 34" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/599291/" class="video-thumbnail-card animate delay-2">
-            <img src="IMGss/35.jpg" alt="Video 35" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <a href="https://okxxx1.com/video/599374/" class="video-thumbnail-card animate delay-3">
-            <img src="IMGss/36.jpg" alt="Video 36" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-
-        <!-- Row 13 -->
-        <a href="https://okxxx1.com/video/599534/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/37.jpg" alt="Video 37" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-        <a href="https://okxxx1.com/video/603133/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/38.jpg" alt="Video 38" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-        <a href="https://okxxx1.com/video/588577/" class="video-thumbnail-card animate delay-1">
-            <img src="IMGss/39.jpg" alt="Video 39" class="video-thumbnail">
-            <div class="video-thumbnail-play">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M5 3l14 9-14 9V3z"/>
-                </svg>
-            </div>
-        </a>
-    </div>
-    <div class="view-all">
-        <a href="#all-videos">
-            View All Videos
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </a>
-    </div>
-</section>
-
-<section id="models" class="section">
-    <h2 class="section-title">Featured Models</h2>
-    <p class="section-subtitle">Discover our talented featured models from around the world</p>
-    <div class="model-grid">
-        <!-- Row 1 -->
-        <a href="https://ok.xxx/models/abby-rose/" class="model-card animate delay-1">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6900/6864/verticaltngf/760x1060c.webp" alt="Abby Rose" class="model-thumbnail">
-            <span class="model-name">Abby Rose</span>
-        </a>
-
-        <a href="https://ok.xxx/models/angela-white/" class="model-card animate delay-2">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/5600/5597/verticaltngf/760x1060c.webp" alt="Angela White" class="model-thumbnail">
-            <span class="model-name">Angela White</span>
-        </a>
-
-        <a href="https://ok.xxx/models/ashley-sinclair/" class="model-card animate delay-3">
-            <img src="https://images4.naughtycdn.com/cms/nacmscontent/v1/performers/4700/4719/verticaltngf/760x1060c.webp" alt="Ashley Sinclair" class="model-thumbnail">
-            <span class="model-name">Ashley Sinclair</span>
-        </a>
-
-        <a href="https://ok.xxx/models/avery-black/" class="model-card animate delay-4">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6300/6307/verticaltngf/760x1060c.webp" alt="Avery Black" class="model-thumbnail">
-            <span class="model-name">Avery Black</span>
-        </a>
-
-        <!-- Row 2 -->
-        <a href="https://ok.xxx/models/blaire-johnson/" class="model-card animate delay-1">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6819/verticaltngf/760x1060c.webp" alt="Blaire Johnson" class="model-thumbnail">
-            <span class="model-name">Blaire Johnson</span>
-        </a>
-
-        <a href="https://ok.xxx/models/capri-cavanni/" class="model-card animate delay-2">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/1400/1379/verticaltngf/760x1060c.webp" alt="Capri Cavanni" class="model-thumbnail">
-            <span class="model-name">Capri Cavanni</span>
-        </a>
-
-        <a href="https://ok.xxx/models/cassidy-klein/" class="model-card animate delay-3">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/4500/4547/verticaltngf/760x1060c.webp" alt="Cassidy Klein" class="model-thumbnail">
-            <span class="model-name">Cassidy Klein</span>
-        </a>
-
-        <a href="https://ok.xxx/models/catalina-ossa/" class="model-card animate delay-4">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6418/verticaltngf/760x1060c.webp" alt="Catalina Ossa" class="model-thumbnail">
-            <span class="model-name">Catalina Ossa</span>
-        </a>
-
-        <!-- Row 3 -->
-        <a href="https://ok.xxx/models/ebony-mystique/" class="model-card animate delay-1">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6805/verticaltngf/760x1060c.webp" alt="Ebony Mystique" class="model-thumbnail">
-            <span class="model-name">Ebony Mystique</span>
-        </a>
-
-        <a href="https://ok.xxx/models/ella-reese/" class="model-card animate delay-2">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6360/verticaltngf/760x1060c.webp" alt="Ella Reese" class="model-thumbnail">
-            <span class="model-name">Ella Reese</span>
-        </a>
-
-        <a href="https://ok.xxx/models/ember-snow/" class="model-card animate delay-3">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6000/5957/verticaltngf/760x1060c.webp" alt="Ember Snow" class="model-thumbnail">
-            <span class="model-name">Ember Snow</span>
-        </a>
-
-        <a href="https://ok.xxx/models/eva-lovia/" class="model-card animate delay-4">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/4800/4769/verticaltngf/760x1060c.webp" alt="Eva Lovia" class="model-thumbnail">
-            <span class="model-name">Eva Lovia</span>
-        </a>
-
-        <!-- Row 4 -->
-        <a href="https://ok.xxx/models/gal-ritchie/" class="model-card animate delay-1">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6763/verticaltngf/760x1060c.webp" alt="Gal Ritchie" class="model-thumbnail">
-            <span class="model-name">Gal Ritchie</span>
-        </a>
-
-        <a href="https://ok.xxx/models/gianna-dior/" class="model-card animate delay-2">
-            <img src="https://images1.naughtycdn.com/cms/nacmscontent/v1/performers/6100/6079/verticaltngf/760x1060c.webp" alt="Gianna Dior" class="model-thumbnail">
-            <span class="model-name">Gianna Dior</span>
-        </a>
-
-        <a href="https://ok.xxx/models/gracie-glam/" class="model-card animate delay-3">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/1800/1795/verticaltngf/760x1060c.webp" alt="Gracie Glam" class="model-thumbnail">
-            <span class="model-name">Gracie Glam</span>
-        </a>
-
-        <a href="https://ok.xxx/models/harley-jade/" class="model-card animate delay-4">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/5300/5319/verticaltngf/760x1060c.webp" alt="Harley Jade" class="model-thumbnail">
-            <span class="model-name">Harley Jade</span>
-        </a>
-
-        <!-- Row 5 -->
-        <a href="https://ok.xxx/models/ivy-lebelle/" class="model-card animate delay-1">
-            <img src="https://images4.naughtycdn.com/cms/nacmscontent/v1/performers/6300/6280/verticaltngf/760x1060c.webp" alt="Ivy LeBelle" class="model-thumbnail">
-            <span class="model-name">Ivy LeBelle</span>
-        </a>
-
-        <a href="https://ok.xxx/models/jada-stevens/" class="model-card animate delay-2">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/3300/3323/verticaltngf/760x1060c.webp" alt="Jada Stevens" class="model-thumbnail">
-            <span class="model-name">Jada Stevens</span>
-        </a>
-
-        <a href="https://ok.xxx/models/jamie-jett/" class="model-card animate delay-3">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6400/verticaltngf/760x1060c.webp" alt="Jamie Jett" class="model-thumbnail">
-            <span class="model-name">Jamie Jett</span>
-        </a>
-
-        <a href="https://ok.xxx/models/jamie-mitchelle/" class="model-card animate delay-4">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6444/verticaltngf/760x1060c.webp" alt="Jamie Mitchelle" class="model-thumbnail">
-            <span class="model-name">Jamie Mitchelle</span>
-        </a>
-
-        <!-- Row 6 -->
-        <a href="https://ok.xxx/models/jane-wilde/" class="model-card animate delay-1">
-            <img src="https://images1.naughtycdn.com/cms/nacmscontent/v1/performers/6200/6175/verticaltngf/760x1060c.webp" alt="Jane Wilde" class="model-thumbnail">
-            <span class="model-name">Jane Wilde</span>
-        </a>
-
-        <a href="https://ok.xxx/models/keira-croft/" class="model-card animate delay-2">
-            <img src="https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6414/verticaltngf/760x1060c.webp" alt="Keira Croft" class="model-thumbnail">
-            <span class="model-name">Keira Croft</span>
-        </a>
-
-        <a href="https://ok.xxx/models/kimmy-kimm/" class="model-card animate delay-3">
-            <img src="https://images4.naughtycdn.com/cms/nacmscontent/v1/performers/6700/6714/verticaltngf/760x1060c.webp" alt="Kimmy Kimm" class="model-thumbnail">
-            <span class="model-name">Kimmy Kimm</span>
-        </a>
-
-        <a href="https://ok.xxx/models/kimora-quin/" class="model-card animate delay-4">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6754/verticaltngf/760x1060c.webp" alt="Kimora Quin" class="model-thumbnail">
-            <span class="model-name">Kimora Quin</span>
-        </a>
-
-        <!-- Row 7 -->
-        <a href="https://ok.xxx/models/kleio-valentien/" class="model-card animate delay-1">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/4300/4283/verticaltngf/760x1060c.webp" alt="Kleio Valentien" class="model-thumbnail">
-            <span class="model-name">Kleio Valentien</span>
-        </a>
-
-        <a href="https://ok.xxx/models/lucky-anne/" class="model-card animate delay-2">
-            <img src="https://images1.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6807/verticaltngf/760x1060c.webp" alt="Lucky Anne" class="model-thumbnail">
-            <span class="model-name">Lucky Anne</span>
-        </a>
-
-        <a href="https://ok.xxx/models/melissa-stratton/" class="model-card animate delay-3">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/6600/6647/verticaltngf/760x1060c.webp" alt="Melissa Stratton" class="model-thumbnail">
-            <span class="model-name">Melissa Stratton</span>
-        </a>
-
-        <a href="https://ok.xxx/models/payton-preslee/" class="model-card animate delay-4">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6362/verticaltngf/760x1060c.webp" alt="Payton Preslee" class="model-thumbnail">
-            <span class="model-name">Payton Preslee</span>
-        </a>
-
-        <!-- Row 8 -->
-        <a href="https://ok.xxx/models/penelope-kay/" class="model-card animate delay-1">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/6500/6477/verticaltngf/760x1060c.webp" alt="Penelope Kay" class="model-thumbnail">
-            <span class="model-name">Penelope Kay</span>
-        </a>
-
-        <a href="https://ok.xxx/models/penelope-woods/" class="model-card animate delay-2">
-            <img src="https://images2.naughtycdn.com/cms/nacmscontent/v1/performers/6500/6470/verticaltngf/760x1060c.webp" alt="Penelope Woods" class="model-thumbnail">
-            <span class="model-name">Penelope Woods</span>
-        </a>
-
-        <a href="https://ok.xxx/models/sheena-ryder/" class="model-card animate delay-3">
-            <img src="https://images1.naughtycdn.com/cms/nacmscontent/v1/performers/6100/6059/verticaltngf/760x1060c.webp" alt="Sheena Ryder" class="model-thumbnail">
-            <span class="model-name">Sheena Ryder</span>
-        </a>
-
-        <a href="https://ok.xxx/models/sophia-leone/" class="model-card animate delay-4">
-            <img src="https://images1.naughtycdn.com/cms/nacmscontent/v1/performers/5000/5039/verticaltngf/760x1060c.webp" alt="Sophia Leone" class="model-thumbnail">
-            <span class="model-name">Sophia Leone</span>
-        </a>
-
-        <!-- Row 9 -->
-        <a href="https://ok.xxx/models/spencer-bradley/" class="model-card animate delay-1">
-            <img src="https://images4.naughtycdn.com/cms/nacmscontent/v1/performers/6400/6401/verticaltngf/760x1060c.webp" alt="Spencer Bradley" class="model-thumbnail">
-            <span class="model-name">Spencer Bradley</span>
-        </a>
-
-        <a href="https://ok.xxx/models/valentina-nappi/" class="model-card animate delay-2">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/4500/4493/verticaltngf/760x1060c.webp" alt="Valentina Nappi" class="model-thumbnail">
-            <span class="model-name">Valentina Nappi</span>
-        </a>
-
-        <a href="https://ok.xxx/models/whitney-oc/" class="model-card animate delay-3">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6700/6720/verticaltngf/760x1060c.webp" alt="Whitney OC" class="model-thumbnail">
-            <span class="model-name">Whitney OC</span>
-        </a>
-
-        <a href="https://ok.xxx/models/xwife-karen/" class="model-card animate delay-4">
-            <img src="https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6816/verticaltngf/760x1060c.webp" alt="Xwife Karen" class="model-thumbnail">
-            <span class="model-name">Xwife Karen</span>
-        </a>
-    </div>
-    <div class="view-all">
-        <a href="#all-models">
-            View All Models
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </a>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-col">
-            <h3>ModernMedia</h3>
-            <p style="color: var(--gray); font-weight: 300; line-height: 1.6; margin-bottom: 1.5rem;">
-                Creating inspiring content for modern audiences. Quality and creativity at the heart of everything we do.
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h3>Quick Links</h3>
-            <ul class="footer-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3>Categories</h3>
-            <ul class="footer-links">
+    <header>
+        <div class="logo">Naughty<span>Porn</span></div>
+        <nav>
+            <ul>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#models">Models</a></li>
-                <li><a href="#lifestyle">Lifestyle</a></li>
-                <li><a href="#social">Social Media</a></li>
             </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#login" class="auth-btn login-btn">Login</a>
+            <a href="#join" class="auth-btn join-btn">Join Now</a>
         </div>
-        <div class="footer-col">
-            <h3>Legal</h3>
-            <ul class="footer-links">
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#terms">Terms of Service</a></li>
-                <li><a href="#cookies">Cookie Policy</a></li>
-                <li><a href="#copyright">Copyright</a></li>
-            </ul>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video" preload="auto" poster="assets/images/vid-poster.jpg">
+            <source src="IMGss/vid.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">Discover premium content</h1>
+            <h2 class="hero-subtitle">creators all around the world</h2>
+            <a href="#videos" class="cta-button scroll-button">
+                Scroll Down
+                <svg class="scroll-down-chevrons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40"
+                    height="40">
+                    <path d="M7 7l5 5 5-5M7 13l5 5 5-5" />
+                </svg>
+            </a>
         </div>
-    </div>
-    <p class="copyright">&copy; 2025 NaughtyPorn. All rights reserved.</p>
-</footer>
+    </section>
 
-<script>
-    // JavaScript for interactive elements
-    document.addEventListener('DOMContentLoaded', function() {
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+    <section id="videos" class="section">
+        <h2 class="section-title">Featured Videos</h2>
+        <p class="section-subtitle">Explore our collection of high-quality video content across various categories</p>
+        <div class="video-grid">
+            <!-- Video cards will be loaded dynamically via JS -->
+        </div>
+        <div class="view-all">
+            <a href="#all-videos">
+                View All Videos
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+    <section id="models" class="section">
+        <h2 class="section-title">Featured Models</h2>
+        <p class="section-subtitle">Discover our talented featured models from around the world</p>
+        <div class="model-grid">
+            <!-- Model cards will be loaded dynamically via JS -->
+        </div>
+        <div class="view-all">
+            <a href="#all-models">
+                View All Models
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>ModernMedia</h3>
+                <p>Creating inspiring content for modern audiences. Quality and creativity at the heart of everything we
+                    do.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#videos">Videos</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#lifestyle">Lifestyle</a></li>
+                    <li><a href="#social">Social Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                    <li><a href="#copyright">Copyright</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="current-year"></span> NaughtyPorn. All rights reserved.</p>
+    </footer>
 
-        // Add animation to cards when they come into view
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.video-thumbnail-card, .model-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Add hover effect to cards
-        document.querySelectorAll('.video-thumbnail-card, .model-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
-                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
-                this.style.borderColor = 'rgba(255, 64, 129, 0.3)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-                this.style.boxShadow = '';
-                this.style.borderColor = '';
-            });
-        });
-    });
-    // Smooth scrolling for the scroll button
-document.querySelector('.scroll-button').addEventListener('click', function(e) {
-    e.preventDefault();
-
-    const targetId = this.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-
-    if (targetSection) {
-        targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-});
-</script>
+    <script src="script.js" defer></script>
 </body>
+
 </html>
