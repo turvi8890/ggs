@@ -1,30 +1,4 @@
-// ===== Load JuicyAds on ANY click =====
-(function() {
-  // Prevent duplicate loading
-  if (window.juicyAdLoaded) return;
-  window.juicyAdLoaded = true;
 
-  // Function to inject the ad
-  function loadJuicyAd() {
-    const adContainer = document.createElement('div');
-    adContainer.id = 'juicy-ad-container';
-    adContainer.innerHTML = `
-      <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"><\/script>
-      <ins id="1095548" data-width="308" data-height="286"></ins>
-      <script type="text/javascript" data-cfasync="false">
-        (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1095548});
-      <\/script>
-    `;
-    document.body.appendChild(adContainer);
-  }
-
-  // Listen for ANY click (only once)
-  document.addEventListener('click', function() {
-    loadJuicyAd();
-    // Remove listener after first click (optional)
-    document.removeEventListener('click', arguments.callee);
-  }, { once: true });
-})();
 // Video and model data (could be moved to an API endpoint for better scalability)
 const videoData = [
     {id:589212,img:"IMGss/1.jpg"},
