@@ -102,11 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     });
 
-    <!-- JuicyAds v3.0 -->
-<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-<ins id="1095548" data-width="308" data-height="286"></ins>
-<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1095548});</script>
-<!--JuicyAds END-->
+   
 
     // Generate model cards
     const modelGrid = document.querySelector('.model-grid');
