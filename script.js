@@ -80,6 +80,11 @@ const modelData = [
     {name:"Whitney OC",slug:"whitney-oc",img:"https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6700/6720/verticaltngf/760x1060c.webp"},
     {name:"Xwife Karen",slug:"xwife-karen",img:"https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6816/verticaltngf/760x1060c.webp"}
 ];
+<!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1095549" data-width="300" data-height="100"></ins>
+<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1095549});</script>
+<!--JuicyAds END-->
 
 document.addEventListener('DOMContentLoaded', function() {
     // Set current year in footer
@@ -100,6 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </a>
         `;
     });
+
+    <!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1095548" data-width="308" data-height="286"></ins>
+<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1095548});</script>
+<!--JuicyAds END-->
 
     // Generate model cards
     const modelGrid = document.querySelector('.model-grid');
@@ -167,6 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.borderColor = '';
         });
     });
+<!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1095551" data-width="258" data-height="528"></ins>
+<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1095551});</script>
+<!--JuicyAds END-->
 
     // Optimize video background loading
     const heroVideo = document.querySelector('.hero-video');
