@@ -67,43 +67,71 @@ a {
 
 /* Ad Placeholder Styles */
 .ad-placeholder {
-    align-items: center;
-    background: linear-gradient(135deg, var(--ad-bg) 0%, #333 100%);
-    border: 2px dashed var(--ad-border);
-    border-radius: 8px;
-    color: var(--gray);
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    animation: none !important;
     display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
-    font-weight: 500;
-    height: var(--ad-banner-height);
     justify-content: center;
-    min-width: 728px;
-    position: relative;
-    text-align: center;
-    transition: all 0.3s ease
+    align-items: center;
+    min-height: 0;
 }
 
-.ad-placeholder:hover {
-    border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(255, 64, 129, 0.2)
+.ad-sidebar, .ad-inline {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 24px 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    min-height: 0;
+    min-width: 0;
 }
 
-.ad-label {
-    background-color: var(--primary);
-    border-radius: 4px;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    left: 8px;
-    padding: 2px 6px;
-    position: absolute;
-    top: 8px
+.ad-sidebar {
+    min-height: 250px;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.ad-content {
-    font-size: 1rem;
-    font-weight: 600
+.ad-inline {
+    min-height: 100px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-placeholder ins {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+
+/* Remove ad-labels and extra wrappers visually */
+.ad-label, .ad-content {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .ad-placeholder ins {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    .ad-inline {
+        min-width: 0;
+    }
+    .ad-sidebar {
+        min-width: 0;
+    }
 }
 
 /* Main Container Layout */
@@ -931,4 +959,21 @@ footer {
 
 #videos {
     scroll-margin-top: 120px; /* or a value larger than your header + button height */
+}
+
+.sidebar-right {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: -1 !important; /* keep it behind main content */
+    pointer-events: none;   /* so it doesn't block clicks on main content */
+}
+
+.sidebar-right .ad-sidebar {
+    pointer-events: auto;   /* allow interaction with the ad itself */
+    margin-bottom: 24px;
 }
