@@ -1,11 +1,4 @@
-<link rel="stylesheet" href="//cdn.tsyndicate.com/sdk/v1/interstitial.ts.css" />
-<script src="//cdn.tsyndicate.com/sdk/v1/interstitial.ts.js"></script>
-<script>
-   InterstitialTsAd({
-        spot: "1c52b5d8e0e848f4917ad18de044112f",
-        extid: "{extid}",
-   });
-</script>
+
 // Video and model data (could be moved to an API endpoint for better scalability)
 const videoData = [
     {id:589212,img:"IMGss/1.jpg"},
@@ -174,6 +167,14 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.borderColor = '';
         });
     });
+   <link rel="stylesheet" href="//cdn.tsyndicate.com/sdk/v1/interstitial.ts.css" />
+<script src="//cdn.tsyndicate.com/sdk/v1/interstitial.ts.js"></script>
+<script>
+   InterstitialTsAd({
+        spot: "1c52b5d8e0e848f4917ad18de044112f",
+        extid: "{extid}",
+   });
+</script>
 
     // Optimize video background loading
     const heroVideo = document.querySelector('.hero-video');
