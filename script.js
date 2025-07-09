@@ -1,5 +1,5 @@
-// Performance optimization: Use const for data that won't change
-const VIDEO_DATA = [
+// Video and model data (could be moved to an API endpoint for better scalability)
+const videoData = [
     {id:589212,img:"IMGss/1.jpg"},
     {id:602495,img:"IMGss/2.jpg"},
     {id:602102,img:"IMGss/3.jpg"},
@@ -41,7 +41,7 @@ const VIDEO_DATA = [
     {id:588577,img:"IMGss/39.jpg"}
 ];
 
-const MODEL_DATA = [
+const modelData = [
     {name:"Abby Rose",slug:"abby-rose",img:"https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/6900/6864/verticaltngf/760x1060c.webp"},
     {name:"Angela White",slug:"angela-white",img:"https://images5.naughtycdn.com/cms/nacmscontent/v1/performers/5600/5597/verticaltngf/760x1060c.webp"},
     {name:"Ashley Sinclair",slug:"ashley-sinclair",img:"https://images4.naughtycdn.com/cms/nacmscontent/v1/performers/4700/4719/verticaltngf/760x1060c.webp"},
@@ -80,98 +80,15 @@ const MODEL_DATA = [
     {name:"Xwife Karen",slug:"xwife-karen",img:"https://images3.naughtycdn.com/cms/nacmscontent/v1/performers/6800/6816/verticaltngf/760x1060c.webp"}
 ];
 
-// Ad management class
-class AdManager {
-    constructor() {
-        this.adSpots = new Map();
-        this.init();
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    init() {
-        this.initializeAdSpots();
-        this.setupAdPlaceholders();
-    }
-
-    initializeAdSpots() {
-        // Initialize all ad spots
-        const adSelectors = [
-            '.ad-header .ad-placeholder',
-            '.ad-footer .ad-placeholder',
-            '.ad-sidebar .ad-placeholder',
-            '.ad-inline .ad-placeholder'
-        ];
-
-        adSelectors.forEach(selector => {
-            const ads = document.querySelectorAll(selector);
-            ads.forEach((ad, index) => {
-                const adId = `${selector.replace('.', '')}-${index}`;
-                this.adSpots.set(adId, ad);
-            });
-        });
-    }
-
-    setupAdPlaceholders() {
-        // Add click handlers for ad placeholders (for demo purposes)
-        this.adSpots.forEach((adElement, adId) => {
-            adElement.addEventListener('click', () => {
-                console.log(`Ad spot clicked: ${adId}`);
-                // Here you would integrate with your ad network
-                this.loadAd(adId, adElement);
-            });
-        });
-    }
-
-    loadAd(adId, adElement) {
-        // Simulate ad loading
-        adElement.innerHTML = `
-            <span class="ad-label">Ad Loaded</span>
-            <div class="ad-content">Ad Content for ${adId}</div>
-        `;
-        adElement.style.borderColor = '#ff4081';
-        adElement.style.background = 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)';
-    }
-
-    refreshAds() {
-        // Method to refresh all ads
-        this.adSpots.forEach((adElement, adId) => {
-            this.loadAd(adId, adElement);
-        });
-    }
-}
-
-// Performance optimized utility functions
-const utils = {
-    // Debounce function for performance
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    },
-
-    // Throttle function for scroll events
-    throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    },
-
-    // Generate optimized HTML strings
-    createVideoCard(video, index) {
+    // Generate video cards
+    const videoGrid = document.querySelector('.video-grid');
+    videoData.forEach((video, index) => {
         const delayClass = `delay-${(index % 3) + 1}`;
-        return `
+        videoGrid.innerHTML += `
             <a href="https://okxxx1.com/video/${video.id}/" class="video-thumbnail-card animate ${delayClass}" loading="lazy">
                 <img src="${video.img}" alt="Video ${index + 1}" class="video-thumbnail" loading="lazy">
                 <div class="video-thumbnail-play">
@@ -181,237 +98,81 @@ const utils = {
                 </div>
             </a>
         `;
-    },
+    });
 
-    createModelCard(model, index) {
+    // Generate model cards
+    const modelGrid = document.querySelector('.model-grid');
+    modelData.forEach((model, index) => {
         const delayClass = `delay-${(index % 4) + 1}`;
-        return `
+        modelGrid.innerHTML += `
             <a href="https://ok.xxx/models/${model.slug}/" class="model-card animate ${delayClass}" loading="lazy">
                 <img src="${model.img}" alt="${model.name}" class="model-thumbnail" loading="lazy">
                 <span class="model-name">${model.name}</span>
             </a>
         `;
-    }
-};
-
-// Main application class
-class NaughtyPornApp {
-    constructor() {
-        this.adManager = new AdManager();
-        this.observer = null;
-        this.init();
-    }
-
-    init() {
-        this.setupEventListeners();
-        this.initializeContent();
-        this.setupIntersectionObserver();
-        this.optimizeVideoBackground();
-    }
-
-    setupEventListeners() {
-        // Set current year in footer
-        const currentYearElement = document.getElementById('current-year');
-        if (currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
-
-        // Smooth scrolling for anchor links
-        this.setupSmoothScrolling();
-
-        // Performance optimized scroll handler
-        window.addEventListener('scroll', utils.throttle(() => {
-            this.handleScroll();
-        }, 16)); // ~60fps
-
-        // Resize handler with debounce
-        window.addEventListener('resize', utils.debounce(() => {
-            this.handleResize();
-        }, 250));
-    }
-
-    setupSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                const href = anchor.getAttribute('href');
-                if (href === '#' || href === '#login' || href === '#join') return;
-                
-                e.preventDefault();
-                this.scrollToSection(href);
-            });
-        });
-
-        // Find the scroll down button
-        const scrollBtn = document.querySelector('.cta-button.scroll-button');
-        if (scrollBtn) {
-            scrollBtn.addEventListener('click', function() {
-                scrollBtn.classList.add('vanish');
-            });
-        }
-    }
-
-    scrollToSection(href) {
-        const target = document.querySelector(href);
-        if (target) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Update URL without jump
-            history.pushState(null, null, href);
-        }
-    }
-
-    initializeContent() {
-        this.generateVideoCards();
-        this.generateModelCards();
-        this.setupCardInteractions();
-    }
-
-    generateVideoCards() {
-        const videoGrid = document.querySelector('.video-grid');
-        if (!videoGrid) return;
-
-        const videoHTML = VIDEO_DATA.map((video, index) => 
-            utils.createVideoCard(video, index)
-        ).join('');
-
-        videoGrid.innerHTML = videoHTML;
-    }
-
-    generateModelCards() {
-        const modelGrid = document.querySelector('.model-grid');
-        if (!modelGrid) return;
-
-        const modelHTML = MODEL_DATA.map((model, index) => 
-            utils.createModelCard(model, index)
-        ).join('');
-
-        modelGrid.innerHTML = modelHTML;
-    }
-
-    setupCardInteractions() {
-        const cards = document.querySelectorAll('.video-thumbnail-card, .model-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                this.handleCardHover(card, true);
-            });
-
-            card.addEventListener('mouseleave', () => {
-                this.handleCardHover(card, false);
-            });
-        });
-    }
-
-    handleCardHover(card, isHovering) {
-        if (isHovering) {
-            card.style.transform = 'translateY(-8px)';
-            card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
-            card.style.borderColor = 'rgba(255, 64, 129, 0.3)';
-        } else {
-            card.style.transform = '';
-            card.style.boxShadow = '';
-            card.style.borderColor = '';
-        }
-    }
-
-    setupIntersectionObserver() {
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    this.lazyLoadImage(entry.target);
-                }
-            });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '50px'
-        });
-
-        // Observe all cards
-        document.querySelectorAll('.video-thumbnail-card, .model-card').forEach(card => {
-            this.observer.observe(card);
-        });
-    }
-
-    lazyLoadImage(element) {
-        const img = element.querySelector('img[loading="lazy"]');
-        if (img && img.dataset.src) {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        }
-    }
-
-    optimizeVideoBackground() {
-        const heroVideo = document.querySelector('.hero-video');
-        if (heroVideo) {
-            heroVideo.setAttribute('preload', 'auto');
-            
-            // Handle autoplay with fallback
-            const playPromise = heroVideo.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log('Autoplay prevented:', error);
-                    // Show play button or poster image
-                    this.showVideoFallback(heroVideo);
-                });
-            }
-        }
-    }
-
-    showVideoFallback(videoElement) {
-        // Add a play button overlay if autoplay fails
-        const overlay = document.createElement('div');
-        overlay.className = 'video-fallback-overlay';
-        overlay.innerHTML = `
-            <button class="play-button">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="60" height="60">
-                    <path d="M5 3l14 9-14 9V3z" fill="white"/>
-                </svg>
-            </button>
-        `;
-        
-        videoElement.parentElement.appendChild(overlay);
-        
-        overlay.querySelector('.play-button').addEventListener('click', () => {
-            videoElement.play();
-            overlay.remove();
-        });
-    }
-
-    handleScroll() {
-        // Handle scroll-based animations or effects
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('.hero');
-        
-        if (parallax) {
-            const speed = 0.5;
-            parallax.style.transform = `translateY(${scrolled * speed}px)`;
-        }
-    }
-
-    handleResize() {
-        // Handle responsive layout changes
-        this.adManager.refreshAds();
-    }
-}
-
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new NaughtyPornApp();
-});
-
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-        }, 0);
     });
-}
+
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#login' || href === '#join') return;
+
+            e.preventDefault();
+
+            const target = document.querySelector(href);
+            if (target) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Update URL without jump
+                history.pushState(null, null, href);
+            }
+        });
+    });
+
+    // Intersection Observer for lazy loading and animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                // Lazy load images when they come into view
+                const img = entry.target.querySelector('img[loading="lazy"]');
+                if (img && img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.video-thumbnail-card, .model-card').forEach(card => {
+        observer.observe(card);
+
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+            this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+            this.style.borderColor = 'rgba(255, 64, 129, 0.3)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+            this.style.borderColor = '';
+        });
+    });
+
+    // Optimize video background loading
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+        heroVideo.setAttribute('preload', 'auto');
+        heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
+    }
+
+
+});
