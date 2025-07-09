@@ -190,3 +190,24 @@ adScript.onload = function() {
     });
 };
 document.head.appendChild(adScript);
+
+// Add banner ad script
+const bannerAdScript = document.createElement('script');
+bannerAdScript.type = 'text/javascript';
+bannerAdScript.src = '//cdn.tsyndicate.com/sdk/v1/bi.js';
+bannerAdScript.setAttribute('data-ts-spot', 'fd3bff6d6d384cd4be8472f69f1cc785');
+bannerAdScript.setAttribute('data-ts-width', '300');
+bannerAdScript.setAttribute('data-ts-height', '250');
+bannerAdScript.setAttribute('data-ts-extid', '{extid}');
+bannerAdScript.async = true;
+bannerAdScript.defer = true;
+document.head.appendChild(bannerAdScript);
+
+// Add banner iframe
+const bannerIframe = document.createElement('iframe');
+bannerIframe.width = '300';
+bannerIframe.height = '250';
+bannerIframe.frameBorder = '0';
+bannerIframe.scrolling = 'no';
+bannerIframe.src = '//tsyndicate.com/iframes2/fd3bff6d6d384cd4be8472f69f1cc785.html?extid={extid}';
+document.body.appendChild(bannerIframe);
